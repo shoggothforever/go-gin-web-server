@@ -1,60 +1,60 @@
-<!DOCTYPE html>
-<!-- saved from url=(0055)https://chatroom-21js.onrender.com/room/hn?nick=irides# -->
-<html lang="en"><script src="chrome-extension://oaljhjociknfmhmfidoogomplhlbdomb/js/ajax-listener-other.js"></script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Server-Sent Events. Room "hn"</title>
-        
-        <script src="./Server-Sent Events. Room _hn__files/jquery.min.js.下载"></script>
-        <script src="./Server-Sent Events. Room _hn__files/jquery.form.js.下载"></script>
-        
-        <script src="./Server-Sent Events. Room _hn__files/d3.v3.min.js.下载"></script>
-        <script src="./Server-Sent Events. Room _hn__files/epoch.min.js.下载"></script>
-        <link rel="stylesheet" href="./Server-Sent Events. Room _hn__files/epoch.min.css">
-        <script src="./Server-Sent Events. Room _hn__files/realtime.js.下载"></script>
-        
-        <link rel="stylesheet" href="./Server-Sent Events. Room _hn__files/bootstrap.min.css">
-        
-        <link rel="stylesheet" href="./Server-Sent Events. Room _hn__files/bootstrap-theme.min.css">
-        
-        <script src="./Server-Sent Events. Room _hn__files/bootstrap.min.js.下载"></script>
-        
-        <link href="./Server-Sent Events. Room _hn__files/prismjs.min.css" rel="stylesheet">
+        <title>Server-Sent Events. Room "{{.roomid}}"</title>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://malsup.github.io/jquery.form.js"></script>
+        <!-- EPOCH -->
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="/static/epoch.min.js"></script>
+        <link rel="stylesheet" href="/static/epoch.min.css">
+        <script src="/static/realtime.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <!-- Primjs -->
+        <link href="/static/prismjs.min.css" rel="stylesheet">
 
         <script>
             $(document).ready(function() {
-              StartRealtime("hn",  1670754451 );
+              StartRealtime({{.roomid}}, {{.timestamp}});
             });
         </script>
         <style>
         body { padding-top: 50px; }
         </style>
     </head>
-    <body inject_svd="true">
+    <body>
     <nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="https://chatroom-21js.onrender.com/room/hn?nick=irides#">Server-Sent Events</a>
+          <a class="navbar-brand" href="#">Server-Sent Events</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true" style="">
+        <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="https://chatroom-21js.onrender.com/room/hn?nick=irides#">chatRoom</a></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li class="active"><a href="#">Demo</a></li>
+            <li><a href="https://www.w3.org/TR/2009/WD-eventsource-20091029/">W3 Standard</a></li>
+            <li><a href="https://caniuse.com/#feat=eventsource">Browser Support</a></li>
+            <li><a href="https://gin-gonic.github.io/gin/">Gin Framework</a></li>
+            <li><a href="https://github.com/gin-gonic/gin/tree/master/examples/realtime-advanced">GitHub</a></li>
           </ul>
-        </div>
-      </div>
-    </nav>
-        
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+        <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
                 <h1>Server-Sent Events in Go</h1>
@@ -73,49 +73,31 @@
                                 <tbody id="chat"></tbody>
                             </table>
                         </div>
-                        
-                        <form autocomplete="off" class="form-inline" id="chat-form" action="https://chatroom-21js.onrender.com/room-post/hn?nick=irides" method="post">
+                        {{if .nick}}
+                        <form autocomplete="off" class="form-inline" id="chat-form" action="/room-post/{{.roomid}}?nick={{.nick}}" method="post">
                             <div class="form-group">
                                 <label class="sr-only" for="chat-message">Message</label>
                                 <div class="input-group">
-                                    <div class="input-group-addon">irides</div>
-                                    <input type="text" name="message" id="chat-message" class="form-control" placeholder="a message" value="" title="overall type: UNKNOWN_TYPE
-server type: NO_SERVER_DATA
-heuristic type: UNKNOWN_TYPE
-ml type: NO_SERVER_DATA
-label: Message
-parseable name: message
-section: message_0_579
-field signature: 3437843363
-form signature: 2931015406247287819
-form signature in host form: 2931015406247287819
-field frame token: B4CC4F0C16E9401170E50E8C7E86809B
-form renderer id: 50
-field renderer id: 579
-field signature string: message&amp;text
-form signature string: " autofill-information="overall type: UNKNOWN_TYPE
-server type: NO_SERVER_DATA
-heuristic type: UNKNOWN_TYPE
-ml type: NO_SERVER_DATA
-label: Message
-parseable name: message
-section: message_0_579
-field signature: 3437843363
-form signature: 2931015406247287819
-form signature in host form: 2931015406247287819
-field frame token: B4CC4F0C16E9401170E50E8C7E86809B
-form renderer id: 50
-field renderer id: 579
-field signature string: message&amp;text
-form signature string: " autofill-prediction="UNKNOWN_TYPE">
+                                    <div class="input-group-addon">{{.nick}}</div>
+                                    <input type="text" name="message" id="chat-message" class="form-control" placeholder="a message" value="">
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-primary" value="Send">
                         </form>
-                        
+                        {{else}}
+                        <form action="" method="get" class="form-inline">
+                            <legend>Join the SSE real-time chat</legend>
+                            <div class="form-group">
+                                <input value='' name="nick" id="nick" placeholder="Your Name" type="text" class="form-control">
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" class="btn btn-success btn-login-submit" value="Join">
+                            </div>
+                        </form>
+                        {{end}}
                     </div>
                     <div class="col-md-4">
-                        <div id="messagesChart" class="epoch category10" data-epoch-container-id="epoch-container-2" style="position: relative;"><svg width="359.99" height="240" style="z-index: 1000;"><g class="x axis bottom canvas" transform="translate(49, 215)"><path class="domain" d="M0,0H304.99"></path><g class="tick major" transform="translate(46.5985000000043,0)" style="opacity: 1;"><line y2="6"></line><text text-anchor="middle" dy="19">06:27:29 PM</text></g><g class="tick major" transform="translate(160.5947500000027,0)" style="opacity: 0.958333;"><line y2="6"></line><text text-anchor="middle" dy="19">06:32:35 PM</text></g><g class="tick major" transform="translate(274.5910000000006,0)" style="opacity: 0.958333;"><line y2="6"></line><text text-anchor="middle" dy="19">06:32:50 PM</text></g></g><g class="y axis left" transform="translate(49, 6)"><g class="tick" transform="translate(0,209)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">0</text></g><g class="tick" transform="translate(0,174.1666717529297)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">0.5</text></g><g class="tick" transform="translate(0,139.3333282470703)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">1</text></g><g class="tick" transform="translate(0,104.5)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">1.5</text></g><g class="tick" transform="translate(0,69.66666412353516)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">2</text></g><g class="tick" transform="translate(0,34.83333206176758)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">2.5</text></g><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">3</text></g><path class="domain" d="M-6,0H0V209H-6"></path></g></svg><canvas width="455.985" height="313.5" style="width: 303.99px; height: 209px; position: absolute; z-index: 999; top: 6px; left: 50px;"></canvas></div>
+                        <div id="messagesChart" class="epoch category10"></div>
                         <p>
                         <span style="font-size:20px; color:#1f77b4">◼︎</span> Users<br>
                         <span style="font-size:20px; color:#ff7f0e">◼︎</span> Inbound messages / sec<br>
@@ -131,8 +113,8 @@ form signature string: " autofill-prediction="UNKNOWN_TYPE">
                 <div class="col-md-6">
                     <h3>Memory usage</h3>
                     <p>
-                    </p><div id="heapChart" class="epoch category20c" data-epoch-container-id="epoch-container-0" style="position: relative;"><svg width="555" height="200" style="z-index: 1000;"><g class="x axis bottom canvas" transform="translate(49, 175)"><path class="domain" d="M0,0H500"></path><g class="tick major" transform="translate(75.85000000000298,0)" style="opacity: 1;"><line y2="6"></line><text text-anchor="middle" dy="19">06:27:29 PM</text></g><g class="tick major" transform="translate(262.9750000000017,0)" style="opacity: 0.958333;"><line y2="6"></line><text text-anchor="middle" dy="19">06:32:35 PM</text></g><g class="tick major" transform="translate(450.10000000000036,0)" style="opacity: 0.958333;"><line y2="6"></line><text text-anchor="middle" dy="19">06:32:50 PM</text></g></g><g class="y axis left" transform="translate(49, 6)"><g class="tick" transform="translate(0,169)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">0</text></g><g class="tick" transform="translate(0,126.11042785644531)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">1 M</text></g><g class="tick" transform="translate(0,83.22086334228516)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">2 M</text></g><g class="tick" transform="translate(0,40.33129119873047)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">3 M</text></g><path class="domain" d="M-6,0H0V169H-6"></path></g></svg><canvas width="748.5" height="253.5" style="width: 499px; height: 169px; position: absolute; z-index: 999; top: 6px; left: 50px;"></canvas></div>
-                    <p></p>
+                    <div id="heapChart" class="epoch category20c"></div>
+                    </p>
                     <p>
                     <span style="font-size:20px; color:#1f77b4">◼︎</span> Heap bytes<br>
                     <span style="font-size:20px; color:#aec7e8">◼︎</span> Stack bytes<br>
@@ -141,8 +123,8 @@ form signature string: " autofill-prediction="UNKNOWN_TYPE">
                 <div class="col-md-6">
                     <h3>Allocations per second</h3>
                     <p>
-                    </p><div id="mallocsChart" class="epoch category20b" data-epoch-container-id="epoch-container-1" style="position: relative;"><svg width="555" height="200" style="z-index: 1000;"><g class="x axis bottom canvas" transform="translate(49, 175)"><path class="domain" d="M0,0H500"></path><g class="tick major" transform="translate(75.85000000000298,0)" style="opacity: 1;"><line y2="6"></line><text text-anchor="middle" dy="19">06:27:29 PM</text></g><g class="tick major" transform="translate(262.9750000000017,0)" style="opacity: 0.958333;"><line y2="6"></line><text text-anchor="middle" dy="19">06:32:35 PM</text></g><g class="tick major" transform="translate(450.10000000000036,0)" style="opacity: 0.958333;"><line y2="6"></line><text text-anchor="middle" dy="19">06:32:50 PM</text></g></g><g class="y axis left" transform="translate(49, 6)"><g class="tick" transform="translate(0,169)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">0</text></g><g class="tick" transform="translate(0,114.12986755371094)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">50</text></g><g class="tick" transform="translate(0,59.25973892211914)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">100</text></g><g class="tick" transform="translate(0,4.389610290527344)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">150</text></g><path class="domain" d="M-6,0H0V169H-6"></path></g></svg><canvas width="748.5" height="253.5" style="width: 499px; height: 169px; position: absolute; z-index: 999; top: 6px; left: 50px;"></canvas></div>
-                    <p></p>
+                    <div id="mallocsChart" class="epoch category20b"></div>
+                    </p>
                     <p>
                     <span style="font-size:20px; color:#393b79">◼︎</span> Mallocs / sec<br>
                     <span style="font-size:20px; color:#5254a3">◼︎</span> Frees / sec<br>
@@ -157,64 +139,64 @@ form signature string: " autofill-prediction="UNKNOWN_TYPE">
                     <li><a href="https://github.com/gin-gonic/gin">The Web Framework (Gin)</a></li>
                 </ul>
                 <div class="col-md-6">
-                <script src="./Server-Sent Events. Room _hn__files/prismjs.min.js.下载"></script>
+                <script src="/static/prismjs.min.js"></script>
                     <h3>Server-side (Go)</h3>
-                    <pre class=" language-go"><code class=" language-go"><span class="token keyword">func</span> <span class="token function">streamRoom<span class="token punctuation">(</span></span>c <span class="token operator">*</span>gin<span class="token operator">.</span>Context<span class="token operator">)</span> <span class="token operator">{</span>
-    roomid <span class="token operator">:=</span> c<span class="token operator">.</span><span class="token function">ParamValue<span class="token punctuation">(</span></span><span class="token string">"roomid"</span><span class="token operator">)</span>
-    listener <span class="token operator">:=</span> <span class="token function">openListener<span class="token punctuation">(</span></span>roomid<span class="token operator">)</span>
-    statsTicker <span class="token operator">:=</span> time<span class="token operator">.</span><span class="token function">NewTicker<span class="token punctuation">(</span></span><span class="token number">1</span> <span class="token operator">*</span> time<span class="token operator">.</span>Second<span class="token operator">)</span>
-    <span class="token keyword">defer</span> <span class="token function">closeListener<span class="token punctuation">(</span></span>roomid<span class="token operator">,</span> listener<span class="token operator">)</span>
-    <span class="token keyword">defer</span> statsTicker<span class="token operator">.</span><span class="token function">Stop<span class="token punctuation">(</span></span><span class="token operator">)</span>
+                    <pre><code class="language-go">func streamRoom(c *gin.Context) {
+    roomid := c.ParamValue(&quot;roomid&quot;)
+    listener := openListener(roomid)
+    statsTicker := time.NewTicker(1 * time.Second)
+    defer closeListener(roomid, listener)
+    defer statsTicker.Stop()
 
-    c<span class="token operator">.</span><span class="token function">Stream<span class="token punctuation">(</span></span><span class="token keyword">func</span><span class="token operator">(</span>w io<span class="token operator">.</span>Writer<span class="token operator">)</span> <span class="token builtin">bool</span> <span class="token operator">{</span>
-        <span class="token keyword">select</span> <span class="token operator">{</span>
-        <span class="token keyword">case</span> msg <span class="token operator">:=</span> <span class="token operator">&lt;-</span>listener<span class="token operator">:</span>
-            c<span class="token operator">.</span><span class="token function">SSEvent<span class="token punctuation">(</span></span><span class="token string">"message"</span><span class="token operator">,</span> msg<span class="token operator">)</span>
-        <span class="token keyword">case</span> <span class="token operator">&lt;-</span>statsTicker<span class="token operator">.</span>C<span class="token operator">:</span>
-            c<span class="token operator">.</span><span class="token function">SSEvent<span class="token punctuation">(</span></span><span class="token string">"stats"</span><span class="token operator">,</span> <span class="token function">Stats<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">)</span>
-        <span class="token operator">}</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span>
-    <span class="token operator">}</span><span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
+    c.Stream(func(w io.Writer) bool {
+        select {
+        case msg := &lt;-listener:
+            c.SSEvent(&quot;message&quot;, msg)
+        case &lt;-statsTicker.C:
+            c.SSEvent(&quot;stats&quot;, Stats())
+        }
+        return true
+    })
+}</code></pre>
                 </div>
                 <div class="col-md-6">
                     <h3>Client-side (JS)</h3>
-                    <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">StartSSE</span><span class="token punctuation">(</span>roomid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">var</span> source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventSource</span><span class="token punctuation">(</span><span class="token string">'/stream/'</span><span class="token operator">+</span>roomid<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    source<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> newChatMessage<span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    source<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'stats'</span><span class="token punctuation">,</span> stats<span class="token punctuation">,</span> <span class="token keyword">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+                    <pre><code class="language-javascript">function StartSSE(roomid) {
+    var source = new EventSource('/stream/'+roomid);
+    source.addEventListener('message', newChatMessage, false);
+    source.addEventListener('stats', stats, false);
+}</code></pre>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <h3>SSE package</h3>
-                    <pre class=" language-go"><code class=" language-go"><span class="token keyword">import</span> <span class="token string">"github.com/manucorporat/sse"</span>
+                    <pre><code class="language-go">import &quot;github.com/manucorporat/sse&quot;
 
-<span class="token keyword">func</span> <span class="token function">httpHandler<span class="token punctuation">(</span></span>w http<span class="token operator">.</span>ResponseWriter<span class="token operator">,</span> req <span class="token operator">*</span>http<span class="token operator">.</span>Request<span class="token operator">)</span> <span class="token operator">{</span>
-    <span class="token comment" spellcheck="true">// data can be a primitive like a string, an integer or a float</span>
-    sse<span class="token operator">.</span><span class="token function">Encode<span class="token punctuation">(</span></span>w<span class="token operator">,</span> sse<span class="token operator">.</span>Event<span class="token operator">{</span>
-        Event<span class="token operator">:</span> <span class="token string">"message"</span><span class="token operator">,</span>
-        Data<span class="token operator">:</span>  <span class="token string">"some data\nmore data"</span><span class="token operator">,</span>
-    <span class="token operator">}</span><span class="token operator">)</span>
+func httpHandler(w http.ResponseWriter, req *http.Request) {
+    // data can be a primitive like a string, an integer or a float
+    sse.Encode(w, sse.Event{
+        Event: &quot;message&quot;,
+        Data:  &quot;some data\nmore data&quot;,
+    })
 
-    <span class="token comment" spellcheck="true">// also a complex type, like a map, a struct or a slice</span>
-    sse<span class="token operator">.</span><span class="token function">Encode<span class="token punctuation">(</span></span>w<span class="token operator">,</span> sse<span class="token operator">.</span>Event<span class="token operator">{</span>
-        Id<span class="token operator">:</span>    <span class="token string">"124"</span><span class="token operator">,</span>
-        Event<span class="token operator">:</span> <span class="token string">"message"</span><span class="token operator">,</span>
-        Data<span class="token operator">:</span> <span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">{</span>
-            <span class="token string">"user"</span><span class="token operator">:</span>    <span class="token string">"manu"</span><span class="token operator">,</span>
-            <span class="token string">"date"</span><span class="token operator">:</span>    time<span class="token operator">.</span><span class="token function">Now<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">.</span><span class="token function">Unix<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">,</span>
-            <span class="token string">"content"</span><span class="token operator">:</span> <span class="token string">"hi!"</span><span class="token operator">,</span>
-        <span class="token operator">}</span><span class="token operator">,</span>
-    <span class="token operator">}</span><span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
+    // also a complex type, like a map, a struct or a slice
+    sse.Encode(w, sse.Event{
+        Id:    &quot;124&quot;,
+        Event: &quot;message&quot;,
+        Data: map[string]interface{}{
+            &quot;user&quot;:    &quot;manu&quot;,
+            &quot;date&quot;:    time.Now().Unix(),
+            &quot;content&quot;: &quot;hi!&quot;,
+        },
+    })
+}</code></pre>
 <pre>event: message
 data: some data\\nmore data
 
 id: 124
 event: message
-data: {"content":"hi!","date":1431540810,"user":"manu"}</pre>
+data: {&quot;content&quot;:&quot;hi!&quot;,&quot;date&quot;:1431540810,&quot;user&quot;:&quot;manu&quot;}</pre>
                 </div>
             </div>
             <hr>
@@ -222,6 +204,5 @@ data: {"content":"hi!","date":1431540810,"user":"manu"}</pre>
                 <p>Created with <span class="glyphicon glyphicon-heart"></span> by <a href="https://github.com/manucorporat">Manu Martinez-Almeida</a></p>
             </footer>
         </div>
-    
-
-<div id="_canvas_css_reference"></div><div id="popupMenu" style="display: none;"></div></body></html>
+    </body>
+</html>
